@@ -14,7 +14,8 @@ public class CheckExecutor {
      * check if possible insert one envelope into the another one
      */
     public void execute(){
-        while (true){
+        boolean end=false;
+        while (!end){
             System.out.println("Insert width of the first envelope :");
             double firstWidth=getSide();
             System.out.println("Insert length of the first envelope :");
@@ -30,17 +31,18 @@ public class CheckExecutor {
             } else {
                 System.out.println("Second envelope can not be inserted into the first one");
             }
-            checkExit();
+            end=isEnd();
         }
     }
 
-    private void checkExit() {
+    private boolean isEnd() {
         System.out.println("Do you want to proceed ?");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
         if (!input.equalsIgnoreCase("yes")&&!input.equalsIgnoreCase("y")){
-            System.exit(0);
+            return true;
         }
+        return false;
     }
 
     private double getSide(){
