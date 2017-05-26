@@ -41,6 +41,6 @@ public class Envelope {
      * @return bigger size of this envelope
      */
     public double getBiggerSize() {
-        return Math.max(height,width);;
+        return Math.max(height,width);
     }
 }
