@@ -32,10 +32,7 @@ public class Envelope {
      * @return lower size of this envelope
      */
     public double getLowerSize() {
-        if (height >= width) {
-            return height;
-        }
-        return width;
+        return Math.min(height,width);
     }
 
     /**
@@ -44,9 +41,6 @@ public class Envelope {
      * @return bigger size of this envelope
      */
     public double getBiggerSize() {
-        if (height <= width) {
-            return height;
-        }
-        return width;
+        return Math.max(height,width);;
     }
 }
