@@ -30,10 +30,11 @@ public class ConsoleReader {
 
     /**
      * close opened reader
+     *
      * @throws IOException
      */
     public void close() throws IOException {
-        if (reader!=null) {
+        if (reader != null) {
             reader.close();
         }
     }

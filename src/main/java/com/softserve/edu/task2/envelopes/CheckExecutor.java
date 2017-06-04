@@ -50,7 +50,7 @@ public class CheckExecutor {
         closeReader();
     }
 
-    private void closeReader(){
+    private void closeReader() {
         if (consoleReader != null) {
             try {
                 consoleReader.close();
