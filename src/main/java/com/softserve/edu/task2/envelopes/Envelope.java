@@ -20,7 +20,8 @@ public class Envelope {
      * @return true if envelope from method parameter can be inserted
      */
     public boolean isCanInsert(Envelope envelope) {
-        if (envelope.getLowerSize() < getLowerSize() && envelope.getBiggerSize() < getBiggerSize()) {
+        if (envelope.getLowerSize() < getLowerSize() && envelope
+                .getBiggerSize() < getBiggerSize()) {
             return true;
         }
         return false;
@@ -32,7 +33,7 @@ public class Envelope {
      * @return lower size of this envelope
      */
     public double getLowerSize() {
-        return Math.min(height,width);
+        return Math.min(height, width);
     }
 
     /**
@@ -41,6 +42,6 @@ public class Envelope {
      * @return bigger size of this envelope
      */
     public double getBiggerSize() {
-        return Math.max(height,width);
+        return Math.max(height, width);
     }
 }

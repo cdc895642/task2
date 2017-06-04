@@ -1,64 +1,63 @@
 package com.softserve.edu.task2.envelopes;
 
-import java.text.NumberFormat;
-import java.text.ParseException;
-import java.util.Locale;
-import java.util.Scanner;
+import java.io.PrintStream;
 
 /**
  * check if possible insert one envelope into the another one
  * Created by cdc89 on 25.05.2017.
  */
 public class CheckExecutor {
+    private ConsoleReader consoleReader;
+    private PrintStream out;
+
+    /**
+     * set streams for input and output data
+     * @param consoleReader stream for input data
+     * @param out stream for output data
+     */
+    public CheckExecutor(ConsoleReader consoleReader, PrintStream out) {
+        this.consoleReader = consoleReader;
+        this.out = out;
+    }
+
     /**
      * check if possible insert one envelope into the another one
      */
-    public void execute(){
-        boolean end=false;
-        while (!end){
-            System.out.println("Insert width of the first envelope :");
-            double firstWidth=getSide();
-            System.out.println("Insert length of the first envelope :");
-            double firstLength=getSide();
-            Envelope firstEnvelope=new Envelope(firstLength,firstWidth);
-            System.out.println("Insert width of the second envelope :");
-            double secondWidth=getSide();
-            System.out.println("Insert length of the second envelope :");
-            double secondLength=getSide();
-            Envelope secondEnvelope=new Envelope(secondLength,secondWidth);
-            if (firstEnvelope.isCanInsert(secondEnvelope)){
-                System.out.println("Second envelope can be inserted into the first one");
+    public void execute() {
+        boolean end = false;
+        while (!end) {
+            out.println("Insert width of the first envelope :");
+            double firstWidth = getSide();
+            out.println("Insert length of the first envelope :");
+            double firstLength = getSide();
+            Envelope firstEnvelope = new Envelope(firstLength, firstWidth);
+            out.println("Insert width of the second envelope :");
+            double secondWidth = getSide();
+            out.println("Insert length of the second envelope :");
+            double secondLength = getSide();
+            Envelope secondEnvelope = new Envelope(secondLength, secondWidth);
+            if (firstEnvelope.isCanInsert(secondEnvelope)) {
+                out.println("Second envelope can be inserted into the "
+                        + "first one");
             } else {
-                System.out.println("Second envelope can not be inserted into the first one");
+                out.println("Second envelope can not be inserted into "
+                        + "the first one");
             }
-            end=isEnd();
+            end = isEnd();
         }
     }
 
     private boolean isEnd() {
-        System.out.println("Do you want to proceed ?");
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        if (!input.equalsIgnoreCase("yes")&&!input.equalsIgnoreCase("y")){
+        out.println("Do you want to proceed ?");
+        String input = consoleReader.readLine();
+        if (!input.equalsIgnoreCase("yes") && !input.equalsIgnoreCase("y")) {
             return true;
         }
         return false;
     }
 
-    private double getSide(){
-        Scanner scanner = new Scanner(System.in);
-        double side=-1;
-        String input = scanner.nextLine();
-        NumberFormat numberFormat=NumberFormat.getNumberInstance(Locale.ENGLISH);
-        try {
-            side=numberFormat.parse(input).doubleValue();
-            if (side<=0){
-                throw new ParseException("incorrect value",0);
-            }
-        } catch (ParseException e) {
-            System.out.println("Inserted incorrect value! Please try again !");
-            side=getSide();
-        }
+    private double getSide() {
+        double side = consoleReader.nextDouble();
         return side;
     }
 }
