@@ -1,5 +1,6 @@
 package com.softserve.edu.task2.envelopes;
 
+import java.io.IOException;
 import java.io.PrintStream;
 
 /**
@@ -12,8 +13,9 @@ public class CheckExecutor {
 
     /**
      * set streams for input and output data
+     *
      * @param consoleReader stream for input data
-     * @param out stream for output data
+     * @param out           stream for output data
      */
     public CheckExecutor(ConsoleReader consoleReader, PrintStream out) {
         this.consoleReader = consoleReader;
@@ -44,6 +46,17 @@ public class CheckExecutor {
                         + "the first one");
             }
             end = isEnd();
+        }
+        closeReader();
+    }
+
+    private void closeReader(){
+        if (consoleReader != null) {
+            try {
+                consoleReader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

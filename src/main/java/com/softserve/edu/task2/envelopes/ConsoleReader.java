@@ -28,6 +28,16 @@ public class ConsoleReader {
         out = System.out;
     }
 
+    /**
+     * close opened reader
+     * @throws IOException
+     */
+    public void close() throws IOException {
+        if (reader!=null) {
+            reader.close();
+        }
+    }
+
     public void setOut(PrintStream out) {
         this.out = out;
     }
